@@ -29,4 +29,4 @@ const loanSchema = new mongoose.Schema({
 
 const applyLoanModel = mongoose.model("Users", loanSchema)
 
-export default userModel
+export default applyLoanModel
