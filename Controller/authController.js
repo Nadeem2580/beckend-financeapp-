@@ -91,13 +91,12 @@ export const auth_Check_Controller = (req, res) => {
     }
 };
 
-export const apply_loan_controller = async(req, res) => {
+export const apply_loan_controller = async (req, res) => {
     try {
 
         const body = req.body
-        console.log(body, "body")
-        
-      const response =  await applyLoanModel.create(body)
+
+        const response = await applyLoanModel.create(body)
 
         res.status(200).json({
             message: "You have applyied for loan successfully",
