@@ -27,6 +27,6 @@ const loanSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now() },
 })
 
-const applyLoanModel = mongoose.model("Users", loanSchema)
+const applyLoanModel = mongoose.model("loanDetail", loanSchema)
 
 export default applyLoanModel

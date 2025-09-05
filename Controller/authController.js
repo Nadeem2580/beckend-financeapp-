@@ -6,6 +6,7 @@ export const login_contoller = async (req, res) => {
     try {
 
         const body = req.body;
+
         const userExist = await userModel.findOne({ email: body.email })
         if (!userExist) {
             return res.status(409).json({
@@ -14,6 +15,7 @@ export const login_contoller = async (req, res) => {
             })
         }
         const comParePassword = await bcrypt.compare(body.password, userExist.password)
+
         if (!comParePassword) {
             return res.status(409).json({
                 message: "email or password is not valid",
@@ -40,10 +42,9 @@ export const login_contoller = async (req, res) => {
 }
 export const sign_up_contoller = async (req, res) => {
     try {
+        const body = req.body;
 
-        const body = req.body
-
-        const isExistEmail = await userModel.findOne({ email: body.email })
+        const isExistEmail = await userModel.findOne({ email: body.email });
 
         if (isExistEmail) {
             return res.status(409).json({
@@ -52,14 +53,14 @@ export const sign_up_contoller = async (req, res) => {
             });
         }
 
-        const hashPassword = await bcrypt.hash(body.password, 10)
+        const hashPassword = await bcrypt.hash(body.password, 10);
 
         const userObj = {
             ...body,
             password: hashPassword
-        }
+        };
 
-        const createUser = await userModel.create(userObj)
+        const createUser = await userModel.create(userObj);
 
         res.status(201).json({
             message: "You have created your account",
@@ -68,12 +69,13 @@ export const sign_up_contoller = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: error.message || "Something went wrong",
             status: false
-        })
+        });
     }
-}
+};
 
 export const auth_Check_Controller = (req, res) => {
     try {
