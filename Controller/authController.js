@@ -22,7 +22,7 @@ export const login_contoller = async (req, res) => {
                 status: false,
             })
         }
-        const privateKey = process.env.Private_Key
+        const privateKey = process.env.JWT_SECRET
         const token = jwt.sign({ id: userExist._id }, privateKey)
         res.status(201).json({
             message: "user have logedin successfully",
